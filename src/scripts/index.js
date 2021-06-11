@@ -1,3 +1,5 @@
-import 'regenerator-runtime';
+import "regenerator-runtime";
+import "../styles/styles.css";
+import "../styles/responsive.css";
 
-console.log('Hello Coders!');
+console.log("Hello Coders!");
