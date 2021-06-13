@@ -1,6 +1,6 @@
 import TheMovieDbSource from '../../data/themoviedb-source';
 import UrlParser from '../../routes/url-parser';
-import { createMovieDetailTemplate } from "../templates/template-creator";
+import { createMovieDetailTemplate } from '../templates/template-creator';
 
 const Detail = {
   async render() {
