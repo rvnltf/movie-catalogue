@@ -1,4 +1,3 @@
-import LikeButtonPresenter from '../src/scripts/utils/like-button-presenter';
 import FavoriteMovieIdb from '../src/scripts/data/favorite-movie-idb';
 import * as TestFactories from './helpers/testFactories';
 
@@ -33,12 +32,7 @@ describe('Unliking A Movie', () => {
   });
 
   it('should be able to remove liked movie from the list', async () => {
-    await LikeButtonPresenter.init({
-      likeButtonContainer: document.querySelector('#likeButtonContainer'),
-      movie: {
-        id: 1,
-      },
-    });
+    await TestFactories.createLikeButtonPresenterWithMovie({ id: 1 });
 
     document
       .querySelector('[aria-label="unlike this movie"]')
