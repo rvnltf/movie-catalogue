@@ -11,9 +11,12 @@ class FavoriteMovieSearchPresenter {
     });
   }
 
-  _searchMovies(latestQuery) {
+  async _searchMovies(latestQuery) {
     this._latestQuery = latestQuery;
-    this._favoriteMovies.searchMovies(this._latestQuery);
+    const foundMovies = await this._favoriteMovies.searchMovies(this.latestQuery);
+    if (foundMovies) {
+      this._showFoundMovies(foundMovies);
+    }
   }
 
   get latestQuery() {
@@ -25,10 +28,12 @@ class FavoriteMovieSearchPresenter {
       (carry, movie) => carry.concat(`<li class="movie"><span class="movie__title">${movie.title || '-'}</span></li>`),
       '',
     );
-   
-    document.querySelector('.movies').innerHTML = html;
-  }
 
+    document.querySelector('.movies').innerHTML = html;
+
+    document.getElementById('movie-search-container')
+      .dispatchEvent(new Event('movies:searched:updated'));
+  }
 }
 
 export default FavoriteMovieSearchPresenter;
