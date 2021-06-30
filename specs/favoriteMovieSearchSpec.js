@@ -198,5 +198,17 @@ describe('Searching movies', () => {
       expect(favoriteMovies.getAllMovies)
         .toHaveBeenCalled();
     });
+    it('should show the empty message', (done) => {
+      document.getElementById('movie-search-container')
+        .addEventListener('movies:searched:updated', () => {
+          expect(document.querySelectorAll('.movies__not__found').length)
+            .toEqual(1);
+          done();
+        });
+
+      favoriteMovies.searchMovies.withArgs('film a').and.returnValues([]);
+
+      searchMovies('film a');
+    });
   });
 });
